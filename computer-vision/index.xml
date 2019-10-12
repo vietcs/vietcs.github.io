@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Computer-visions on VietCS</title>
+    <link>http://www.example.com/computer-vision/</link>
+    <description>Recent content in Computer-visions on VietCS</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Sat, 12 Oct 2019 11:41:14 +0700</lastBuildDate>
+    
+	<atom:link href="http://www.example.com/computer-vision/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Test</title>
+      <link>http://www.example.com/computer-vision/test/</link>
+      <pubDate>Sat, 12 Oct 2019 11:41:14 +0700</pubDate>
+      
+      <guid>http://www.example.com/computer-vision/test/</guid>
+      <description>title: &amp;ldquo;Computer Vision là gì?&amp;rdquo; date: 2019-10-11T19:46:41+07:00
+draft: false 1. Bạn đã thật sự hiểu? Theo bạn, Computer Vision (Thị giác máy tính) là gì?
+Đây có vẻ như là một khái niệm mà người không biết thì nghĩ mình biết rất rõ, còn người nghĩ mình không biết thì lại biết rất rõ 🤣. Mình có đi thử hỏi một số bạn thì xem các bạn đó nghĩ Computer Vision là thứ gì trên đời?</description>
+    </item>
+    
+  </channel>
+</rss>
