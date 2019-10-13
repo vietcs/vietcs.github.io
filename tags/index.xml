@@ -5,7 +5,7 @@
     <link>http://www.vietcs.github.com/tags/</link>
     <description>Recent content in Tags on VietCS</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 12 Oct 2019 13:34:08 +0700</lastBuildDate>
+    <lastBuildDate>Sun, 13 Oct 2019 13:34:08 +0700</lastBuildDate>
     
 	<atom:link href="http://www.vietcs.github.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -13,7 +13,7 @@
     <item>
       <title>introductory</title>
       <link>http://www.vietcs.github.com/tags/introductory/</link>
-      <pubDate>Sat, 12 Oct 2019 13:34:08 +0700</pubDate>
+      <pubDate>Sun, 13 Oct 2019 13:34:08 +0700</pubDate>
       
       <guid>http://www.vietcs.github.com/tags/introductory/</guid>
       <description></description>
@@ -22,18 +22,9 @@
     <item>
       <title>vision</title>
       <link>http://www.vietcs.github.com/tags/vision/</link>
-      <pubDate>Sat, 12 Oct 2019 13:34:08 +0700</pubDate>
+      <pubDate>Sun, 13 Oct 2019 13:34:08 +0700</pubDate>
       
       <guid>http://www.vietcs.github.com/tags/vision/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>engineering</title>
-      <link>http://www.vietcs.github.com/tags/engineering/</link>
-      <pubDate>Thu, 26 Jul 2018 00:00:00 +0000</pubDate>
-      
-      <guid>http://www.vietcs.github.com/tags/engineering/</guid>
       <description></description>
     </item>
     
