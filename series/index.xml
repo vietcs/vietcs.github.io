@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Series on VietCS</title>
-    <link>http://www.example.com/series/</link>
+    <link>http://www.vietcs.github.com/series/</link>
     <description>Recent content in Series on VietCS</description>
     <generator>Hugo -- gohugo.io</generator>
     
-	<atom:link href="http://www.example.com/series/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.vietcs.github.com/series/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>

@@ -2,29 +2,29 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Authors on VietCS</title>
-    <link>http://www.example.com/authors/</link>
+    <link>http://www.vietcs.github.com/authors/</link>
     <description>Recent content in Authors on VietCS</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sun, 12 Aug 2018 12:30:00 +0600</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2019 13:34:08 +0700</lastBuildDate>
     
-	<atom:link href="http://www.example.com/authors/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.vietcs.github.com/authors/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>muniftanjim</title>
-      <link>http://www.example.com/authors/muniftanjim/</link>
-      <pubDate>Sun, 12 Aug 2018 12:30:00 +0600</pubDate>
+      <title>achary</title>
+      <link>http://www.vietcs.github.com/authors/achary/</link>
+      <pubDate>Sat, 12 Oct 2019 13:34:08 +0700</pubDate>
       
-      <guid>http://www.example.com/authors/muniftanjim/</guid>
+      <guid>http://www.vietcs.github.com/authors/achary/</guid>
       <description></description>
     </item>
     
     <item>
-      <title>achary</title>
-      <link>http://www.example.com/authors/achary/</link>
-      <pubDate>Sun, 29 Jul 2018 09:00:00 +0600</pubDate>
+      <title>muniftanjim</title>
+      <link>http://www.vietcs.github.com/authors/muniftanjim/</link>
+      <pubDate>Sat, 12 Oct 2019 13:34:08 +0700</pubDate>
       
-      <guid>http://www.example.com/authors/achary/</guid>
+      <guid>http://www.vietcs.github.com/authors/muniftanjim/</guid>
       <description></description>
     </item>
     

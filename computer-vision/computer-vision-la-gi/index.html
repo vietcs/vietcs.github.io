@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='1. Bạn đã thật sự hiểu? 
+ Ảnh 1 Minh họa Object Detection - towardsdatascience 
+Theo bạn, Computer Vision (Thị giác máy tính) là gì?
+Đây có vẻ như là một khái niệm mà người không biết thì nghĩ mình biết rất rõ, còn người nghĩ mình không biết thì lại biết rất rõ 🤣. Mình có đi thử hỏi một số bạn thì xem các bạn đó nghĩ Computer Vision là thứ gì trên đời?'>
+<meta name='theme-color' content='#44ccff'>
+
+<meta property='og:title' content='Bạn biết gì về Computer Vision? • Munif Tanjim'>
+<meta property='og:description' content='1. Bạn đã thật sự hiểu? 
+ Ảnh 1 Minh họa Object Detection - towardsdatascience 
+Theo bạn, Computer Vision (Thị giác máy tính) là gì?
+Đây có vẻ như là một khái niệm mà người không biết thì nghĩ mình biết rất rõ, còn người nghĩ mình không biết thì lại biết rất rõ 🤣. Mình có đi thử hỏi một số bạn thì xem các bạn đó nghĩ Computer Vision là thứ gì trên đời?'>
+<meta property='og:url' content='http://www.vietcs.github.com/computer-vision/computer-vision-la-gi/'>
+<meta property='og:site_name' content='VietCS'>
+<meta property='og:type' content='article'><meta property='og:image' content='https://www.gravatar.com/avatar/058944a54775b387da964cb3cc3670ff?s=256'><meta property='og:image' content='https://www.gravatar.com/avatar/d7ec2ccd833907a8f827c8d39d56664a?s=256'><meta property='article:author' content='https://facebook.com/MunifTanjim'><meta property='article:section' content='computer-vision'><meta property='article:tag' content='introductory'><meta property='article:tag' content='vision'><meta property='article:published_time' content='2019-10-12T13:34:08&#43;07:00'/><meta property='article:modified_time' content='2019-10-12T13:34:08&#43;07:00'/><meta name='twitter:card' content='summary'><meta name='twitter:creator' content='@MunifTanjim'>
+
+<meta name="generator" content="Hugo 0.58.3" />
+
+  <title>Bạn biết gì về Computer Vision? • Munif Tanjim</title>
+  <link rel='canonical' href='http://www.vietcs.github.com/computer-vision/computer-vision-la-gi/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.fb20af92.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#44ccff;}
+</style>
+
+  
+
+</head>
+<body class='page type-computer-vision has-sidebar has-emoji'>
+
+  <div class='site'><div id='sidebar' class='sidebar'>
+  <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <div class='logo'>
+      <a href='/'>
+        <img src='/images/logo.svg'>
+      </a>
+    </div>
+    
+    <h2 class='title site-title '>
+      <a href='/'>
+      VietCS
+      </a>
+    </h2>
+    <div class='desc'>
+    Ideas worth spreading
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-taxonomy_cloud sep-after'>
+  <header>
+    <h4 class='title widget-title'>Tags</h4>
+  </header>
+
+  <div class='container list-container'>
+  <ul class='list taxonomy-cloud no-shuffle'><li>
+        <a href='/tags/engineering/' style='font-size:1em'>engineering</a>
+      </li><li>
+        <a href='/tags/introductory/' style='font-size:1em'>introductory</a>
+      </li><li>
+        <a href='/tags/vision/' style='font-size:1em'>vision</a>
+      </li></ul>
+</div>
+
+
+</section>
+</div>
+
+  <div class='sidebar-overlay'></div>
+</div><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    <a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='sidebar-toggler' aria-controls='sidebar'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+  <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+</button>
+    <ul><li class='item'>
+        <a href='/' class="">
+          <span>Home</span>
+        </a>
+      </li><li class='item'>
+        <a href='/computer-vision/' class="">
+          <span>Computer Vision</span>
+        </a>
+      </li><li class='item'>
+        <a href='/about-us/' class="">
+          <span>About us</span>
+        </a>
+      </li><li class='item'>
+        <a href='https://github.com/vietcs' class="repository">
+          <span>Repo</span>
+        </a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'>
+    
+    <style>.widget-breadcrumbs li:after{content:'\2f '}</style>
+  <section class='widget widget-breadcrumbs sep-after'>
+    <nav id='breadcrumbs'>
+      <ol><li><a href='/'>Home</a></li><li><a href='/computer-vision/'>Computer Vision</a></li><li><span>Bạn biết gì về Computer Vision?</span></li></ol>
+    </nav>
+  </section></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>VietCS</p><p class='desc site-desc'>Ideas worth spreading</p>
+          </div>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Bạn biết gì về Computer Vision?</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2019-10-12T13:34:08&#43;07:00'>2019, Oct 12</time>
+</span>
+
+  <span class='byline'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M21,21V20c0-2.76-4-5-9-5s-9,2.24-9,5v1"/>
+  <path d="M16,6.37A4,4,0,1,1,12.63,3,4,4,0,0,1,16,6.37Z"/>
+  
+</svg>
+<span class='screen-reader-text'> by </span><a href='/authors/muniftanjim'>Munif Tanjim</a>, <a href='/authors/achary'>Adam Charytoniuk</a></span>
+  
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/>
+  
+</svg>
+9 mins read
+</span>
+
+
+  
+  
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <summary class='title'>
+    <span></span>Table of Contents</span>
+  </summary>
+  <nav id="TableOfContents">
+<ul>
+<li><a href="#1-bạn-đã-thật-sự-hiểu">1. Bạn đã thật sự hiểu?</a></li>
+<li><a href="#2-computer-vision-là-gì">2. Computer Vision là gì?</a>
+<ul>
+<li><a href="#2-1-mỗi-bức-ảnh-là-một-câu-chuyện">2.1 Mỗi bức ảnh là một câu chuyện</a></li>
+<li><a href="#2-2-định-nghĩa">2.2 Định nghĩa</a></li>
+</ul></li>
+<li><a href="#3-vision-không-phải-image-processing">3. Vision không phải Image Processing</a>
+<ul>
+<li><a href="#3-1-adelson-s-checker-shadow-effect">3.1. Adelson&rsquo;s Checker-Shadow Effect</a></li>
+<li><a href="#3-2-kersten-s-shadow-effect">3.2.  Kersten&rsquo;s Shadow Effect</a></li>
+<li><a href="#3-3-stereoscope">3.3. Stereoscope</a></li>
+<li><a href="#3-3-ambiguity">3.3. Ambiguity</a></li>
+</ul></li>
+<li><a href="#4-computer-vision-không-dễ">4. Computer Vision không dễ</a>
+<ul>
+<li><a href="#4-1-images-are-ambiguous">4.1. Images are ambiguous</a></li>
+<li><a href="#4-2-objects-blend-together">4.2. Objects blend together</a></li>
+<li><a href="#4-3-intra-class-variance">4.3. Intra-class variance</a></li>
+<li><a href="#4-4-depth-ambiguity">4.4. Depth ambiguity</a></li>
+<li><a href="#4-5-high-semantic-level">4.5. High semantic level</a></li>
+</ul></li>
+<li><a href="#5-tại-sao-computer-vision">5. Tại sao Computer Vision?</a></li>
+<li><a href="#6-các-chủ-đề-tiêu-biểu-trong-computer-vision">6. Các chủ đề tiêu biểu trong Computer Vision</a></li>
+<li><a href="#7-tham-khảo">7. Tham khảo</a></li>
+</ul>
+</nav>
+
+
+
+  <div class='container entry-content'>
+  
+
+<h1 id="1-bạn-đã-thật-sự-hiểu">1. Bạn đã thật sự hiểu?</h1>
+
+<p><center><img src="https://miro.medium.com/max/1200/1*s9raSe9mLeSSuxE3API-ZA.gif" width=400></center></p>
+
+<p><center> <b>Ảnh 1</b> Minh họa Object Detection - <i>towardsdatascience </i></center></p>
+
+<p>Theo bạn, Computer Vision (Thị giác máy tính) là gì?</p>
+
+<p>Đây có vẻ như là một khái niệm mà người không biết thì nghĩ mình biết rất rõ, còn người nghĩ mình không biết thì lại biết rất rõ 🤣. Mình có đi thử hỏi một số bạn thì xem các bạn đó nghĩ Computer Vision là thứ gì trên đời? Mình sẽ gom các câu trả lời thành một số dạng sau đây:</p>
+
+<ul>
+<li><p>&ldquo;Computer Vision là Image Processing (xử lý ảnh)&rdquo;</p></li>
+
+<li><p>&ldquo;Computer Vision là Object Detection, Object Recognition&rdquo;</p></li>
+
+<li><p>&ldquo;Computer Vision là dạy cho máy tính hiểu các thông tin thị giác (như ảnh và video) như con người&rdquo;</p></li>
+
+<li><p>&ldquo;Computer Vision là các hệ thống camera sử dụng trí thông minh của máy để giải quyết các công việc của người&rdquo;</p></li>
+
+<li><p>&ldquo;Computer Vision là liên quan tới việc tìm kiếm các quy luật để khai thác thông tin thị giác từ ảnh và video&rdquo;</p></li>
+</ul>
+
+<p>Hmm có vẻ như ai cũng có lý cả đúng không? Theo bạn, theo bạn ai đúng ai sai?</p>
+
+<h1 id="2-computer-vision-là-gì">2. Computer Vision là gì?</h1>
+
+<h2 id="2-1-mỗi-bức-ảnh-là-một-câu-chuyện">2.1 Mỗi bức ảnh là một câu chuyện</h2>
+
+<p><center><img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/Accident_de_chemin_de_fer_%C3%A1_la_gare_Montparnasse_en_1895.jpg" width=300></center></p>
+
+<p><center> <b>Ảnh 2</b></center></p>
+
+<p>Nhìn bức ảnh bạn thấy gì:</p>
+
+<ul>
+<li>Một tai nạn xe lửa thảm khốc ?</li>
+<li>Một bức tranh về xưa cũ về tàu hỏa ?</li>
+<li>Mọi người đang xây dựng hiện trường để đóng phím (có cái thang và dây) ?</li>
+<li>Một công viên giải trí (theme park) để mọi người chụp hình ?</li>
+</ul>
+
+<p><center><img src = "https://scontent.fsgn5-6.fna.fbcdn.net/v/t1.15752-9/71948514_691248641361382_6832124930105016320_n.png?_nc_cat=106&_nc_oc=AQnwU005seafSaNukp2Ck5Tbwoidxpy0g0NweiTWEI6ktgnjhcV86SbQU6EBTRvdnmU&_nc_ht=scontent.fsgn5-6.fna&oh=006b29806b8a53ef374e1502112146bc&oe=5E29D8CB" width=400></center></p>
+
+<p><center> <b>Ảnh 3</b>. Martin Luther King, &ldquo;I Have A Dream&rdquo; </center>
+<center> Bạn thấy điều gì ở bức ảnh này? </center></p>
+
+<p>Nhiều bạn sẽ có cách hiểu hình ảnh trên khác nhau, nhưng các bạn sẽ nhận ra rằng não bạn đã đưa ra câu chuyện (story) khác nhau cho các bức ảnh, và não bạn làm điều này một cách rất tự nhiên bởi ví chúng được sinh ra để làm những việc như thế.</p>
+
+<p>Nhưng &ldquo;story&rdquo; là gì? Tùy thuộc vào việc bạn muốn làm gì với nó! Ví dụ như là:</p>
+
+<ul>
+<li>Vị trí các vật trong ảnh</li>
+<li>Cảm xúc của bức ảnh</li>
+<li>Độ sâu các vật thể trong bức ảnh</li>
+
+<li><p>Hàm ý của bức ảnh</p></li>
+
+<li><p>..</p></li>
+</ul>
+
+<p>Computer Vision là một lĩnh vực nghiên cứu để khiến máy tính hiểu được các thông tin thị giác tương tự như con người.</p>
+
+<p><code>The goal of computer vision is to write computer programs that can interpret images</code> [3]</p>
+
+<h2 id="2-2-định-nghĩa">2.2 Định nghĩa</h2>
+
+<p><center><img src="https://i0.wp.com/static1.businessinsider.com/image/535edec0ecad04c0741f732f/construction_google_car.gif" width=400> </center></p>
+
+<p><center> <b>Ảnh 4.</b> Thị giác trong xe tự hành - <i>informationstrategyrsm</i> </center></p>
+
+<p>Bây giờ chúng ta sẽ nhìn lại định nghĩa để nhìn nhận lại định một cách chuẩn mực hơn, ở đây có rất nhiều định nghĩa nhưng mình sẽ cố tìm những định nghĩa đáng tin cậy và có tính tổng quát cao . Theo định nghĩa của Dana H. Ballard và Christopher M. Brown trong cuốn sách &ldquo;Computer Vision&rdquo; xuất bản năm 1982:</p>
+
+<p><code>Computer vision is an interdisciplinary scientific field that deals with how computers can be made to gain high-level understanding from digital images or videos. From the perspective of engineering, it seeks to automate tasks that the human visual system can do</code> [1]</p>
+
+<p>Như vậy là Computer Vision sẽ quan tâm tới việc làm thế nào để khiến máy tính có thể <strong>hiểu</strong> được các thông tin thị giác như ảnh và videos. Nhiệm vụ chính của Computer Vision là làm cầu nối (bridging) cho khoảng cách từ giữa trí thông minh thị giác của con người với trí thông minh thị giác của máy tính. Ở khía cạnh kĩ thuật thì mục tiêu của Computer Vision là tự động hóa các tác vụ liên quan tới thị giác giống như con người: Detection (nhận dạng), Image Captioning (Nhìn hình kể chuyện), Visual question answering (Hỏi đáp thị giác),..</p>
+
+<h1 id="3-vision-không-phải-image-processing">3. Vision không phải Image Processing</h1>
+
+<p>Khác với Image Processing: đầu vào là ảnh và đầu ra là ảnh. Với đầu vào là ảnh, Computer Vision hướng tới đầu ra là .. &ldquo;hiểu&rdquo; bức ảnh. Khi bạn sinh ra, ban đầu bạn sẽ thấy mờ mờ một chút, rồi đột nhiên, bạn thấy và hiểu mọi thứ. Việc nhìn thấy này có vẻ rất đơn giản đối với chúng ta, nhưng với máy tính thì sao?</p>
+
+<h2 id="3-1-adelson-s-checker-shadow-effect">3.1. Adelson&rsquo;s Checker-Shadow Effect</h2>
+
+<p>[5] Checker shadow illusion là một nghiên cứu về ảo ảnh thị giác được công bố bởi Edward H. Edelson, giáo sư về Khoa học Thị giác tại MIT vào năm 1995.</p>
+
+<p><center><img src='https://www.illusionsindex.org/images/illusions/Adelson-Checkershadow/33_adelson_main.jpg' width=400></center></p>
+
+<p><center><b> Ảnh 5. </b> Adelson’s Checker-Shadow Effect</center></p>
+
+<p>Bức ảnh này gồm một bàn cờ, phần lớn được đổ bóng bằng một khối hình trụ.</p>
+
+<p><strong>Câu hỏi:</strong> Theo bạn, A và B vùng nào tối hơn?</p>
+
+<p>&hellip; Có vẻ như là B có màu nhạt hơn A.</p>
+
+<p>Ok, giả sử bạn có một cái photometer (thước đo ánh sáng) và bạn áp vào thì sẽ như thế nào:</p>
+
+<p><center><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Grey_square_optical_illusion_proof2.svg/2000px-Grey_square_optical_illusion_proof2.svg.png' width=400></center></p>
+
+<p><center><b> Ảnh 6. </b> Adelson’s Checker-Shadow Effect với photometer</center></p>
+
+<p>Voila! Photometer sẽ cho bạn thấy rằng A và B đều có số photon như nhau. Như vậy là A và B có màu hoàn toàn giống nhau sao?</p>
+
+<p>Đúng vậy, bức hình này tạo ra một ảo ảnh thị giác rằng ô vuông A có vẻ như có màu đậm hơn ô vuông B&hellip; hoặc là do não của bạn nghĩ rằng đó là một ô sáng nhưng chả qua nó chỉ được đổ bóng thôi? Từ đó, bạn có thể thấy nguyên nhân tại sao Computer Vision là 1 bài toán khó.</p>
+
+<h2 id="3-2-kersten-s-shadow-effect">3.2.  Kersten&rsquo;s Shadow Effect</h2>
+
+<p>Ở ví dụ trước, 2 ô vuông A và B có độ lớn màu (color intensity) hoàn toàn giống nhau, tuy nhiên não của bạn biết chắc chắn ô B là 1 ô màu sáng, chả qua là nó bị đổ bóng thôi. Như vậy, <strong>seeing</strong> không chỉ đơn thuần là <strong>property of measurement</strong>  (thông số có thể đo lường được), <strong>seeing</strong> là xây dựng một <strong>percept</strong> (tri giác) hoặc một <strong>description</strong> (câu mô tả) về các <strong>visual information</strong> (thông tin thị giác) mà bạn nhìn thấy[3]. Ở trong não của bạn, điều này diễn ra rất tự nhiên.</p>
+
+<p>Ở ví dụ này, chúng ta cùng tìm hiểu thêm về một hiện tượng tương tự:</p>
+
+<p><center><img src='https://upload.wikimedia.org/wikipedia/commons/5/5d/Kersten%27s_shadow_effect_-_increasing_height.gif' width=400'></center></p>
+
+<p><center><b> Ảnh 7. </b> Lifting shadow</center></p>
+
+<p><center><img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Kersten%27s_shadow_effect_-_same_height.gif/800px-Kersten%27s_shadow_effect_-_same_height.gif' width=400></center></p>
+
+<p><center><b> Ảnh 8. </b> Flat-moving shadow</center></p>
+
+<p>Ở 2 bức hình này, ta thấy 1 chiếc hộp di chuyển theo 2 hướng khác nhau trên cùng 1 mặt phẳng:</p>
+
+<ul>
+<li>Một chiếc hộp đi từ trái qua phải và hướng lên trên</li>
+<li>Một chiếc hộp đi xéo về hướng góc phải của mặt phẳng</li>
+</ul>
+
+<p>Nếu bạn để ý kĩ, hình ảnh 2 chiếc hộp đều nằm ở vị trí giống nhau, chỉ cái bóng là thay đổi. Não chúng ta, với kinh nghiệm hiểu biết về ánh sáng và đổ bóng dày dặn từ cha sinh mẹ đẻ tới giờ, não ta đang giả định rằng có một nguồn sáng phía trên chiếc hộp, và ở hình đầu tiên chiếc hộp được nhấc bổng lên, còn hình bên dưới đi đi với góc phải của mặt phẳng.</p>
+
+<p>Một lần nữa, <strong>seeing</strong> không chỉ đơn thuần là <strong>property of measurement</strong>, mà <strong>seeing</strong> là <strong>understanding</strong>.</p>
+
+<h2 id="3-3-stereoscope">3.3. Stereoscope</h2>
+
+<p><center><img src='https://foundlingmuseum.org.uk/wp-content/uploads/2015/12/Stereoscope-in-The-Fallen-Woman-848x400.jpg' width=400></center></p>
+
+<p><center><b> Ảnh 9. </b> Stereoscope - <i> Wikipedia </i></center></p>
+
+<p><strong>Kính lập thể</strong> (stereoscope) là một loại thiết bị dùng để xem một cặp ảnh riêng biệt ở dạng lập thể hay dạng ảnh nổi, với nguyên tắc mắt phải và mắt trái nhìn vào cùng một cảnh trên hai ảnh. <a href="Về phần stereo vision mình sẽ chia sẻ trong các số tiếp theo 😀" target="_blank">6</a></p>
+
+<p><center><img src='https://media1.giphy.com/media/qETVHTMHfkhOM/giphy.gif' width=400></center></p>
+
+<p><center><b> Ảnh 10. </b> Một bức hình stereoscope của một phụ nữ đang sử dụng stereoscope - <i> tumblr </i></center></p>
+
+<p>[4] Mắt chúng ta, nhờ <strong>difference</strong> (sự khác biệt) giữa 2 bức hình, đã làm cho bạn biết rằng: cô gái đó ngồi phía sau cái bàn và trước một kệ sách.</p>
+
+<h2 id="3-3-ambiguity">3.3. Ambiguity</h2>
+
+<p>[3] Như vậy, qua 3 ví dụ trên, các bạn có thể tự đặt cho mình một câu hỏi: Phải chăng não chúng ta bằng một cách nào đó đang hoạt động một cách sai lệch? Cái hộp trong <em>hình 7</em> và <em>hình 8</em> có lẽ đã không di chuyển theo hướng của chúng ta nghĩ?</p>
+
+<p>Nhưng thật ra, có một <strong>ambiguity</strong> (sự mơ hồ) về việc chiếc hộp đang di chuyển theo hướng nào, và não của bạn đã viết nên một câu chuyện để giải thích hiện tượng đó. Cuối cùng, sự khác nhau giữa Image Processing và Computer Vision là <strong>xây dựng câu chuyện</strong> đó.</p>
+
+<h1 id="4-computer-vision-không-dễ">4. Computer Vision không dễ</h1>
+
+<h2 id="4-1-images-are-ambiguous">4.1. Images are ambiguous</h2>
+
+<p><center><img src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.15752-9/72565820_464746427717943_5353728901136777216_n.png?_nc_cat=100&_nc_oc=AQmH1BPjk3-Ct2uy9KNrNxSYrGfXGP_YiUap9V_oEi32AWgQN8BidW1zxQ3lXWRSiVY&_nc_ht=scontent.fsgn5-5.fna&oh=f483c445bd0acb549097177b1962fb1c&oe=5E1F2D4C" width=400></center></p>
+
+<p><center><b> Ảnh 11. </b> Chai coca thật hay giả? - <i> [4] </i></center></p>
+
+<h2 id="4-2-objects-blend-together">4.2. Objects blend together</h2>
+
+<p><center><img src='https://scontent.fsgn5-7.fna.fbcdn.net/v/t1.15752-9/72967144_398954134116112_4459523268524638208_n.png?_nc_cat=103&_nc_oc=AQmRe6x_nb8Veub7nFzIn9_SOXpGHzwM6x2jGRsoAzyq1k8ATAN2hU4vOpeURCjG_uE&_nc_ht=scontent.fsgn5-7.fna&oh=59e679428ddb8efbd7fcfd3bee40486b&oe=5E37E0E6' width=400></center></p>
+
+<p><center><b> Ảnh 12. </b> Cái cây..hay là cái gì khác? - <i> [4] </i></center></p>
+
+<h2 id="4-3-intra-class-variance">4.3. Intra-class variance</h2>
+
+<p>Kể cả các sự vật cùng loại cũng có <strong>intra-class variance</strong> lớn (tạm hiểu là khác biệt rất lớn về ngoại hình)</p>
+
+<p><center> <img src="https://scontent.fsgn5-6.fna.fbcdn.net/v/t1.15752-9/72329140_2359449911036802_9204249356394299392_n.png?_nc_cat=106&_nc_oc=AQkRmxTPfpccsHjtpdUkCxaXZbFGzcuU3ed1FJzpYLYpxrnlHGUC5suw4mm4c7ndjOY&_nc_ht=scontent.fsgn5-6.fna&oh=ee6f2e73bfa1edb8b72224547e72ecce&oe=5E20F75D" width=400> </center></p>
+
+<p><center><b> Ảnh 13. </b> Shape variation (Khác nhau về hình dáng) - <i> [4] </i></center></p>
+
+<p><center><img src="https://scontent-hkg3-1.xx.fbcdn.net/v/t1.15752-9/72547969_382958022581658_5081595091747864576_n.png?_nc_cat=109&_nc_oc=AQk46lhPXoGyMMaBtqNIcKZjS9h4IoFfdE2RhZVwbBL4gr6M675AMd5CWVR2skILdX8&_nc_ht=scontent-hkg3-1.xx&oh=08b78db0ae08179207bb15dd8c9ab64a&oe=5E26D1CF" width=400></center></p>
+
+<p><center><b> Ảnh 14. </b> Occlusion (Bị che khuất) - <i> [4] </i></center></p>
+
+<p><center><img src='https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.15752-9/72529808_2469499526479112_4046001098551459840_n.png?_nc_cat=100&_nc_oc=AQkwyueIlKGvvYnpopKEf1LHsMpwDsY7HpzSCjP3mUznt98aQDl_ZrD6cMEvRF5rY-M&_nc_ht=scontent.fsgn5-5.fna&oh=3e5617e8eb175aada4c24e638f98a1fc&oe=5E397B2D' width =400></center></p>
+
+<p><center><b> Ảnh 15. </b> background clutter (ảnh nền lộn xộn) - <i> [4] </i></center></p>
+
+<h2 id="4-4-depth-ambiguity">4.4. Depth ambiguity</h2>
+
+<p><center> <img src="https://scontent.fsgn5-6.fna.fbcdn.net/v/t1.15752-9/72082174_544757772966431_6821665344709459968_n.png?_nc_cat=106&_nc_oc=AQkCc0q78k74o-MMZhIhd42qlZ4raxUHXOpzGghrE7AK52I9SnK1F1gqTeCJwBF5R2U&_nc_ht=scontent.fsgn5-6.fna&oh=afb1c276a0658201abdeea8780591c7e&oe=5E2E98FD" width=400></center></p>
+
+<p><center><b> Ảnh 16. </b> Người đàn ông đang đứng trước hay kế tháp Pisa? - <i> [7] </i></center></p>
+
+<p>Hoho bằng kinh nghiệm dày dặn của mình bạn đủ thông minh để biết rằng anh này không thể đứng kế tháp Pisa được đúng không? Nhưng còn bức ảnh này thì sao:</p>
+
+<p><center><img src="https://scontent.fsgn5-5.fna.fbcdn.net/v/t1.15752-9/72398935_770809700005510_1908022715688681472_n.png?_nc_cat=100&_nc_oc=AQmP4PqUZCQvo8ccndF3SdX4Xdj6p5LshPBaWWinw75X9m7qtz7E4R1Mozzjgvk53AM&_nc_ht=scontent.fsgn5-5.fna&oh=d94f8b8132e14cd659e37539ca8db0aa&oe=5E62C950" width=400> </center></p>
+
+<p><center><b> Ảnh 17. </b> Quả cà chua khổng lồ! - <i> [7] </i></center></p>
+
+<h2 id="4-5-high-semantic-level">4.5. High semantic level</h2>
+
+<p><center><img src="https://i.redd.it/ejun3n7qxrc11.png" width=300></center></p>
+
+<p><center><b> Ảnh 18. </b> Ảnh meme - <i> [7] </i></center></p>
+
+<p>Khoảng cách giữa ảnh meme và ý nghĩa thật sự ẩn chứa trong nó là .. một dải ngân hà. Hiện nay đã có một bài báo [8] của các nghiên cứu sinh Stanford sử dụng Deep Neural Networks để tạo ra cả meme, công nghệ giờ thật là &ldquo;chanh xả&rdquo;!</p>
+
+<p><center><img src="http://www.extracatchy.net/wp-content/uploads/2017/04/meaningful-pictures.jpg" width=400></center></p>
+
+<p><center><b> Ảnh 19. </b> Ảnh châm biếm - <i> extracatchy </i></center></p>
+
+<h1 id="5-tại-sao-computer-vision">5. Tại sao Computer Vision?</h1>
+
+<h1 id="6-các-chủ-đề-tiêu-biểu-trong-computer-vision">6. Các chủ đề tiêu biểu trong Computer Vision</h1>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-chart" data-lang="chart">    {
+    &#34;type&#34;: &#34;line&#34;,
+        &#34;data&#34;: {
+            &#34;labels&#34;: [&#34;One&#34;, &#34;Two&#34;, &#34;Three&#34;, &#34;Four&#34;, &#34;Five&#34;, &#34;Six&#34;],
+            &#34;datasets&#34;: [
+            {
+                &#34;label&#34;: &#34;# of Votes&#34;,
+                &#34;data&#34;: [12, 19, 3, 5, 2, 3],
+                &#34;backgroundColor&#34;:&#34;transparent&#34;,
+                &#34;borderColor&#34;:&#34;orange&#34;
+            },
+            {
+                &#34;label&#34;: &#34;Some other set&#34;,
+                &#34;data&#34;: [15, 8, 13, 5, 5, 9],
+                &#34;backgroundColor&#34;:&#34;transparent&#34;,
+                &#34;borderColor&#34;:&#34;#44ccff&#34;
+            }
+            ]
+        }
+    }</code></pre></div>
+<h1 id="7-tham-khảo">7. Tham khảo</h1>
+
+<p>[1] <a href="https://machinelearningmastery.com/what-is-computer-vision/" target="_blank">A Gentle Introduction to Computer Vision - Machine Learning Mastery</a></p>
+
+<p>[2] <a href="https://en.wikipedia.org/wiki/Computer_vision#cite_note-Ballard-Brown-1982-1" target="_blank">Computer Vision - Wikipedia</a></p>
+
+<p>[3] <a href="[https://www.udacity.com/course/introduction-to-computer-vision--ud810](https://www.udacity.com/course/introduction-to-computer-vision--ud810?fbclid=IwAR03v3_-5CH4ozgbTnJHtU53kd_8tUeFk3aqlJm_vodMzYA-Q6UOVUMA958)" target="_blank">Introduction to Computer Vision - Georgia Tech on Udacity</a></p>
+
+<p>[4] <a href="http://www.cs.cornell.edu/courses/cs4670/2018sp/lec01_intro.pdf" target="_blank">CS4670 Cornell&rsquo;s Introduction to Computer Vision</a></p>
+
+<p>[5] <a href="https://en.wikipedia.org/wiki/Checker_shadow_illusion" target="_blank">Checker shadow illusion - Wikipedia</a></p>
+
+<p>[6] <a href="https://en.wikipedia.org/wiki/Stereoscope" target="_blank">Stereoscope - wikipedia</a></p>
+
+<p>[7] <a href="https://www.docsity.com/en/depth-ambiguity-introduction-to-computer-vision-lecture-12-computer-science/57838/" target="_blank">Introduction to Computer Vision - Toyota Technological Institute at Chicago (TTIC)</a></p>
+
+<p>[8] <a href="https://arxiv.org/pdf/1806.04510.pdf" target="_blank">Dank Learning: Generating Memes Using DeepNeural Network</a></p>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='categories'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M22,19a2,2,0,0,1-2,2H4a2,2,0,0,1-2-2V5A2,2,0,0,1,4,3H9l2,3h9a2,2,0,0,1,2,2Z"/>
+  
+</svg>
+<span class='screen-reader-text'>Categories: </span><a class='category' href='/categories/computer-vision/'>computer vision</a></div>
+<div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/introductory/'>introductory</a>, <a class='tag' href='/tags/vision/'>vision</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/vietcs' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:contact@example.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p> &copy; 2019 VietCS </p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__assets_js_src ="/assets/js/"</script>
+
+<script src='http://www.vietcs.github.com/assets/js/main.9e5c4cf4.js'></script><script src='/js/custom.js'></script><script type='text/x-mathjax-config'>
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"processEscapes":true}})
+</script>
+
+<script type='text/javascript' async src='//unpkg.com/mathjax/MathJax.js?config=TeX-MML-AM_CHTML'></script><link rel='stylesheet' href='//unpkg.com/katex/dist/katex.min.css'>
+<script src='//unpkg.com/katex/dist/katex.min.js'></script>
+<script src='//unpkg.com/katex/dist/contrib/auto-render.min.js'></script>
+
+<script type='text/javascript'>
+  renderMathInElement(document.querySelector('.entry-content'),{});
+</script>
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/assets/js/Chart.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var chartPrefix = "language-chart";
+            
+            var borderColor = "#444";
+            var bgColor = "#eee";
+            var borderWidth = 2;
+
+            Chart.defaults.global.elements.rectangle.borderWidth = borderWidth;
+            Chart.defaults.global.elements.rectangle.borderColor = borderColor;
+            Chart.defaults.global.elements.rectangle.backgroundColor = bgColor;
+
+            Chart.defaults.global.elements.line.borderWidth = borderWidth;
+            Chart.defaults.global.elements.line.borderColor = borderColor;
+            Chart.defaults.global.elements.line.backgroundColor = bgColor;
+
+            Chart.defaults.global.elements.point.borderWidth = borderWidth;
+            Chart.defaults.global.elements.point.borderColor = borderColor;
+            Chart.defaults.global.elements.point.backgroundColor = bgColor;
+
+        var index = 0;
+        Array.prototype.forEach.call(document.querySelectorAll("[class^=" + chartPrefix + "]"), function(x){
+            x.style.display = 'none'
+            x.parentNode.style.backgroundColor = "transparent"
+            jsonContent = x.innerText;
+
+            node0 = document.createElement('canvas');
+            node0.height = 200;
+            node0.style.height=200;
+            node0.id = 'myChart' + index;
+            source = JSON.parse(jsonContent);
+            x.parentNode.insertBefore(node0, x);
+            var ctx = document.getElementById('myChart' + index).getContext('2d');
+
+
+            var myChart = new Chart(ctx, source);
+
+            index +=1;
+        });
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
